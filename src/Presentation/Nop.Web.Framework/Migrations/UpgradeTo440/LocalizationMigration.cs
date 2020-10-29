@@ -256,6 +256,8 @@ namespace Nop.Web.Framework.Migrations.UpgradeTo440
                 ["Admin.Configuration.Plugins.DiscardChanges.Progress"] = "Discarding changes on plugins...",
                 ["Admin.Configuration.Plugins.ApplyChanges"] = "Restart application to apply changes",
                 ["Admin.Configuration.Plugins.ApplyChanges.Progress"] = "Applying changes on plugins...",
+                ["Admin.Configuration.Settings.Catalog.AttributeValueOutOfStockDisplayType"] = "Display type for attribute value when out of stock",
+                ["Admin.Configuration.Settings.Catalog.AttributeValueOutOfStockDisplayType.Hint"] = "Select the display type for attribute value when out of stock. Note that 'Allow only existing attribute combinations' should be activated on product.",
             });
 
             // rename locales

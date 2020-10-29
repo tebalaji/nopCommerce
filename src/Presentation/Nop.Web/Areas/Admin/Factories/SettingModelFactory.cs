@@ -1046,6 +1046,8 @@ namespace Nop.Web.Areas.Admin.Factories
                 Value = "list"
             });
 
+            model.AttributeValueOutOfStockDisplayTypes = catalogSettings.AttributeValueOutOfStockDisplayType.ToSelectList();
+
             //fill in overridden values
             if (storeId > 0)
             {
@@ -1117,6 +1119,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 model.ExportImportRelatedEntitiesByName_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ExportImportRelatedEntitiesByName, storeId);
                 model.ExportImportProductUseLimitedToStores_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ExportImportProductUseLimitedToStores, storeId);
                 model.DisplayDatePreOrderAvailability_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.DisplayDatePreOrderAvailability, storeId);
+                model.AttributeValueOutOfStockDisplayType_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.AttributeValueOutOfStockDisplayType, storeId);
             }
 
             //prepare nested search model

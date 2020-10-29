@@ -259,6 +259,16 @@ namespace Nop.Web.Controllers
             });
         }
 
+        public virtual IActionResult GetExistedCombinations(int productId)
+        {
+            var product = _productService.GetProductById(productId);
+            if (product == null)
+                return NotFound();
+
+            var model = _productModelFactory.PrepareProductCombinationModels(product);
+            return Ok(model);
+        }
+
         #endregion
 
         #region Recently viewed products

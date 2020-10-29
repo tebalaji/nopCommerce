@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Infrastructure;
 using Nop.Data;
@@ -27,6 +28,15 @@ namespace Nop.Web.Framework.Migrations.UpgradeTo440
                 externalAuthenticationSettings.LogErrors = false;
 
                 settingService.SaveSetting(externalAuthenticationSettings);
+            }
+
+            var catalogSettings = settingService.LoadSetting<CatalogSettings>();
+
+            if (!settingService.SettingExists(catalogSettings, settings => settings.AttributeValueOutOfStockDisplayType))
+            {
+                catalogSettings.AttributeValueOutOfStockDisplayType = AttributeValueOutOfStockDisplayType.Disable;
+
+                settingService.SaveSetting(catalogSettings);
             }
         }
 
