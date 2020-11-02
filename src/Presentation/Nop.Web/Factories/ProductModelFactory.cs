@@ -1205,7 +1205,7 @@ namespace Nop.Web.Factories
                 {
                     var combinationModel = new ProductCombinationModel
                     {
-                        InStock = combination.StockQuantity > product.MinStockQuantity
+                        InStock = combination.StockQuantity > 0 || combination.AllowOutOfStockOrders
                     };
 
                     var mappings = _productAttributeParser.ParseProductAttributeMappings(combination.AttributesXml);
