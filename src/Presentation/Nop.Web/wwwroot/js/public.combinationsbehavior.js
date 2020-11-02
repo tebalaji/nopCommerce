@@ -145,7 +145,8 @@
                 });
                 if (processedValue) {
                   if (!processedValue.inStock && combination.InStock) {
-                    self.toggleAttributeValue(valueId, combination.InStock);
+                    self.toggleAttributeValue(valueId, true);
+                    processedValue.inStock = true;
                   }
                 } else {
                   self.toggleAttributeValue(valueId, combination.InStock);
