@@ -140,14 +140,16 @@
                 return attribute.Id === selectedAttribute.id;
               });
               $.each(attribute.ValueIds, function (index, valueId) {
-                if (combination.InStock) {
-                  self.toggleAttributeValue(valueId, true);
+                var processedValue = processedValues.find(function (value) {
+                  return value.id === valueId;
+                });
+                if (processedValue) {
+                  if (!processedValue.inStock && combination.InStock) {
+                    self.toggleAttributeValue(valueId, combination.InStock);
+                  }
                 } else {
-                  self.toggleAttributeValue(valueId, false);
-                }
-
-                if ($.inArray(valueId, processedValues) === -1) {
-                  processedValues.push(valueId);
+                  self.toggleAttributeValue(valueId, combination.InStock);
+                  processedValues.push({ id: valueId, inStock: combination.InStock });
                 }
               });
             });
@@ -155,7 +157,10 @@
             // toggle unprocessed attribute value
             var valueIds = self.getAttributeValueIds(selectedAttribute.id);
             $.each(valueIds, function (index, valueId) {
-              if ($.inArray(valueId, processedValues) === -1) {
+              var processedValue = processedValues.find(function (value) {
+                return value.id === valueId;
+              });
+              if (!processedValue) {
                 self.toggleAttributeValue(valueId, false);
               }
             });
